@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Building
+      working-directory: ./aplicacao
+      run: docker-compose build
+      
+    - name: Running
+      working-directory: ./aplicacao
+      run: docker-compose up
+      
+  tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Building
+      working-directory: ./aplicacao
+      run: docker-compose build
+      
+    - name: Running tests
+      working-directory: ./aplicacao
+      run: docker-compose run app bash -c "rails db:reset;rspec"
+      
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Building
+      working-directory: ./aplicacao
+      run: docker-compose build
+      
+    - name: Running
+      working-directory: ./aplicaco
+      run: docker-compose run app bash -c "gem install rubocop; rubocop --fail-level-F"
+      
+      

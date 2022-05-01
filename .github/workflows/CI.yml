@@ -14,16 +14,12 @@ jobs:
 
       - name: Building
         working-directory: ./aplicacao
-        run: docker-compose up
+        run: docker-compose up -d
       
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Building
-        working-directory: ./aplicacao
-        run: docker-compose up
 
       - name: Running Tests
         working-directory: ./aplicacao

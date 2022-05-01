@@ -24,9 +24,10 @@ jobs:
       - name: Building
         working-directory: ./aplicacao
         run: docker-compose up -d
+
       - name: Running Tests
         working-directory: ./aplicacao
-        run: docker exec app bash "rails db:reset; rspec"
+        run: docker-compose run app "rails db:reset; rspec"
     
   lint: 
     runs-on: ubuntu-latest

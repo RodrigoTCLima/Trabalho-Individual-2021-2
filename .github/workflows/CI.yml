@@ -14,12 +14,8 @@ jobs:
 
       - name: Building
         working-directory: ./aplicacao
-        run: docker-compose build
+        run: docker-compose up
       
-      - name: Running
-        working-directory: ./aplicacao
-        run: docker-compose up -d
-
   test:
     runs-on: ubuntu-latest
     steps:

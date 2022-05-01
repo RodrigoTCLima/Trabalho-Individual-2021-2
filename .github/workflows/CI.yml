@@ -21,9 +21,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Building
+        working-directory: ./aplicacao
+        run: docker-compose up
+
       - name: Running Tests
         working-directory: ./aplicacao
-        run: docker-compose run app "rails db:reset; rspec"
+        run: docker exec app bash "rails db:reset; rspec"
     
   lint: 
     runs-on: ubuntu-latest

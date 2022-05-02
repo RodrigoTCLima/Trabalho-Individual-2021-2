@@ -9,9 +9,6 @@ on:
 
 jobs:
   deploy:
-    needs: CI
-
-    name: CD
     runs-on: ubuntu-latest
 
     steps:
